@@ -1,0 +1,546 @@
+*{
+    padding: 0;
+    box-sizing: 0;
+    margin:0;
+    text-decoration: none;
+    
+}
+html{
+    scroll-behavior: smooth;
+}
+.max-w{
+    max-width: 1300px;
+    padding: 0 80px;
+    margin: auto;
+}
+
+.nav{
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background: crimson;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    
+}
+.nav .max-w{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .menu li{
+    list-style: none;
+    display: inline-block;
+}
+.nav .menu li a{
+    color: #f0f4f8;
+    font-size:33px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    display: block;
+    margin-left: 25px;
+
+
+}
+.li:hover{
+    background-color: black;
+    color: crimson;
+    cursor: pointer;
+    padding:2px;
+    border-radius: 11px;
+}
+
+
+
+
+ .menu-btn{
+    display:none ;
+    font-size: 23px;
+    cursor: pointer;
+    
+    color: aliceblue;
+}
+
+.home{
+    display: flex;
+    background: url(h.jpg) no-repeat center/cover;
+    height: 89vh;
+    min-height: 500px;
+    color:rgb(250, 1, 1);
+    z-index: -2;
+    opacity: 3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+}
+
+.home .max-w{
+    margin: auto 0 auto 40px;
+}
+
+.home .home-c .text1{
+    font-size: 35px;
+    font-weight:400;
+
+}
+
+.home .home-c .text2{
+    font-size:80px;
+    font-weight: 700;
+    margin-left: -3px;
+}
+
+.home .home-c .text3{
+    font-size: 45px;
+    margin: 5px 0;
+    font-weight: 500;
+
+}
+
+.home .home-c .text3 span{
+    color: rgb(241, 238, 11);
+    font-weight: 600;
+  
+    
+}
+
+
+
+section{
+    padding: 80px;
+}
+
+.aboutme  .t,.services .t,.skills .t, .con-me .t{
+    color: crimson;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500;
+    padding: 20px;
+    text-decoration: underline;
+    position: relative;
+}
+
+.aboutme .about-c ,.services .ser-c,.skills .sk-c,.con-me .con-c{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aboutme .about-c .cl,.skills .sk-c .cl{
+    width: 45%;
+}
+
+.aboutme .about-c .cl img{
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    border-radius: 6px;
+    
+}
+
+.aboutme .about-c .rl,.skills .sk-c .rl{
+    width: 55%;
+}
+
+.aboutme .about-c .rl .text{
+    font-size: 35px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.aboutme .about-c .rl .text span{
+color: rgb(241, 238, 11);
+
+}
+
+.aboutme .about-c .rl p{
+    text-align: justify;
+    font-size: 20px;
+}
+
+.aboutme .about-c .rl a{
+    text-align: justify;
+}
+
+.btn{
+    background-color: crimson;
+    color: aliceblue;
+    border-radius: 15px;
+    font-size: 15px;
+    padding: 7px;
+    margin-top:9px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn:hover{
+    color:crimson;
+    background-color: black;
+    font-weight: 500;
+}
+
+.services{
+    background-color: black;
+    color: #f0f4f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.services .text{
+    font-size: 25px;
+}
+.services .ser-c .card{
+    width:calc(28% - 20px);
+    background-color: dimgrey;
+    text-align: center;
+    border-radius: 6px;
+    padding: 20px 25px;
+    cursor: pointer;
+}
+
+.services .ser-c .card:hover{
+    background-color: crimson;
+}
+
+.services .ser-c .card i{
+    font-size: 45px;
+    color: crimson;
+    transition: color o.3s ease;
+}
+
+
+
+.services .ser-c .card  :hover i{
+    color: #f0f4f8;
+}
+
+.services .ser-c .card text,.con-me .con-c .text{
+    font-size: 25px;
+    font-weight: 500;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.skills,.con-me{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.skills .sk-c .cl{
+    width: calc(50%-30px);
+}
+.skills .sk-c .rl{
+    font-weight: 500;
+    margin-top: 25px;
+}
+
+.skills .sk-c .cl .text{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.skills .sk-c .rl .bars{
+   margin-bottom: 15px;
+
+
+}
+.skills .sk-c .rl .info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.line{
+    height: 5px;
+    width: 100%;
+    background: lightgray;
+    position:relative;
+}
+
+.line::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width:55%;
+    left:0;
+    top: 0;
+    background: crimson;
+
+}
+
+.sk-c .rl .h::before{
+width: 90%;
+}
+
+.sk-c .rl .c::before{
+    width:60%;
+    }
+
+ .sk-c .rl .s::before{
+        width: 70%;
+        }
+
+.sk-c .rl .j::before{
+            width: 90%;
+            }
+
+.sk-c .rl .p::before{
+             width: 80%;
+                }
+
+.sk-c .rl .a::before{
+            width: 80%;
+               }
+
+
+
+
+
+.con-me .con-c .text{
+    
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.con-me .con-c .cl{
+    width: calc(50% - 30px);
+}
+
+.con-me .con-c .cl p{
+    text-align: justify;
+}
+
+.con-me .con-c .cl .icon{
+    margin: 10px 0;
+}
+
+
+.con-me .con-c .row{
+    display: flex;
+    height: 65px;
+    text-align: center;
+}
+
+.head{
+    margin-left: 6px;
+    text-align: left;
+}
+
+
+
+
+.handles,.social{
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.social{
+ font-weight: 600;
+ margin-bottom: 12px;
+ color: crimson;
+ font-size: 20px;
+}
+
+
+.handles .l{
+    background-color:crimson;
+    color: aliceblue;
+    font-weight: 500;
+    padding: 6px;
+    border-radius: 20px;
+}
+
+.handles .l:hover{
+    color: crimson;
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer{
+    background: crimson;
+    padding: 10px;
+    
+}
+
+.foot a{
+color: aliceblue;
+font-size: 18px;
+font-weight: 500;
+
+}
+
+.foot a:hover{
+    color:crimson;
+    background-color: black;
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 11px;
+}
+
+/**********************************************/
+@media (max-width: 1104px) {
+    .aboutme .about-c .cl img{
+        height: 350px;
+        width: 350px;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .max-w{
+        padding: 0 50px;
+    }
+}
+
+
+@media (max-width: 947px){
+    .menu-btn{
+        color: aliceblue;
+        display:block;
+        z-index: 999;
+    }
+  
+    .menu-btn i.active:before{
+        content: "\f00d";
+    }
+    .nav .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .nav .menu.active{
+        left: 0;
+    }
+    .nav .menu li{
+        display: block;
+    }
+    .nav .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+.home .home-c .text-2{
+    font-size: 70px;
+}
+.home .home-c .text-3{
+    font-size: 35px;
+}
+.home .home-c a{
+    font-size: 23px;
+    padding: 10px 30px;
+}
+.max-w{
+    max-width: 930px;
+}
+.aboutme .about-c .cl{
+    width: 100%;
+}
+.aboutme .about-c .cl{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 60px;
+}
+.aboutme .about-c .rl{
+    flex: 100%;
+}
+
+
+.services .ser-c .card{
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+}
+}
+
+    .con-me .con-c .cl {
+        width: 100%;
+        margin-bottom: 35px;
+    }
+
+    .t{
+        display: block;
+    }
+
+
+
+
+    @media (max-width: 690px) {
+        .max-w{
+            padding: 0 23px;
+        }
+        .home .home-c .text-2{
+            font-size: 60px;
+        }
+        .home .home-c .text-3{
+            font-size: 32px;
+        }
+        .home .home-c a{
+            font-size: 20px;
+        }
+        .services .ser-c .card{
+            width: 100%;
+        }
+        .skills .sk-c .cl {
+            width: 100%;
+        margin-bottom: 35px;
+    }
+    .skills .sk-c .rl .bars{
+        width: 240%;
+    }
+   
+        }
+    
+
+    @media (max-width: 500px) {
+        .home .home-c .text-2{
+            font-size: 50px;
+        }
+        .home .home-c .text-3{
+            font-size: 27px;
+        }
+        .aboutme .about-c .rl .text,
+        .skills .sk-c .cl .text{
+            font-size: 19px;
+        }
+        .con-me .right form .row{
+            flex-direction: column;
+        }
+         .handles  .l {
+            margin: 5px;
+            display: list-item;
+        }
+        .con-me .con-c .cl .icon{
+            margin: 10px 0;
+        }
+        
+       
+        
+    }
