@@ -1,274 +1,1091 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="sty" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta charset='utf-8'>
-   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet'  href='style.css'> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" integrity="sha512-3J8teBiHrSyaaRBajZyIEtpDsXdPq1gsznKWIVb5CnorQuFhjWGhWe54z8YNnHHr7MZuExb9m5kvf964HiT1Sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.js"></script>
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-   
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harsh Sukhadia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0e10;
+      --surface: #13161a;
+      --surface2: #1c2028;
+      --border: rgba(255,255,255,0.06);
+      --accent: #a8ff78;
+      --accent-dim: rgba(168,255,120,0.12);
+      --blue: #78b4ff;
+      --text: #dde1e8;
+      --muted: #5c6370;
+      --muted2: #8a95a3;
+      --serif: 'Fraunces', serif;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Manrope', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* subtle grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.018;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5rem;
+      background: rgba(12,14,16,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.35s ease;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted2);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--muted2);
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 9rem 5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+    .hero-blob-1 {
+      width: 500px; height: 500px;
+      background: rgba(168,255,120,0.07);
+      top: -80px; right: 0;
+    }
+    .hero-blob-2 {
+      width: 350px; height: 350px;
+      background: rgba(120,180,255,0.05);
+      bottom: 80px; left: 100px;
+    }
+
+    .hero-inner { max-width: 1060px; margin: 0 auto; width: 100%; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted2);
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.15s ease forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      flex-shrink: 0;
+    }
+
+    h1.hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3.8rem, 8.5vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      opacity: 0;
+      animation: fadeUp 0.65s 0.3s ease forwards;
+    }
+    h1.hero-name em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 300;
+    }
+
+    .hero-desc {
+      margin-top: 2rem;
+      font-size: 1.05rem;
+      color: var(--muted2);
+      max-width: 480px;
+      line-height: 1.8;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.48s ease forwards;
+    }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
+
+    .hero-ctas {
+      display: flex;
+      gap: 0.85rem;
+      margin-top: 2.8rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.65s 0.62s ease forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 3px;
+      padding: 0.75rem 1.8rem;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-filled {
+      background: var(--accent);
+      color: #0c0e10;
+    }
+    .btn-filled:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--muted2);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: rgba(168,255,120,0.35); color: var(--text); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem; left: 5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 1s ease forwards;
+    }
+    .hero-scroll-line {
+      width: 36px; height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+    .hero-scroll span {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT WRAPPER ── */
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 5rem;
+    }
+
+    .divider { width: 100%; height: 1px; background: var(--border); }
+
+    /* ── SECTION ── */
+    .section { padding: 6.5rem 0; }
+
+    .sec-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h2.sec-title {
+      font-family: var(--serif);
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-body p {
+      color: var(--muted2);
+      font-size: 1rem;
+      font-weight: 300;
+      margin-bottom: 1.1rem;
+    }
+    .about-body p strong { color: var(--text); font-weight: 500; }
+
+    .about-body .cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      transition: gap 0.2s;
+    }
+    .about-body .cv-link:hover { gap: 0.7rem; }
+
+    .about-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+
+    .info-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.3rem 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .info-block:hover { border-color: rgba(168,255,120,0.2); }
+
+    .info-block-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .info-block-value {
+      font-size: 0.92rem;
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 2.2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 0.15rem;
+      line-height: 1.6;
+    }
+
+    .exp-right {}
+    .exp-role { font-size: 0.98rem; font-weight: 600; color: var(--text); }
+    .exp-company {
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin: 0.15rem 0 0.7rem;
+      font-weight: 400;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+    .exp-bullets li {
+      font-size: 0.88rem;
+      color: var(--muted2);
+      font-weight: 300;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 2px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(168,255,120,0.15);
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .tag-blue {
+      background: rgba(120,180,255,0.1);
+      border-color: rgba(120,180,255,0.2);
+      color: var(--blue);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.6rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .skill-card:hover {
+      border-color: rgba(168,255,120,0.2);
+      transform: translateY(-3px);
+    }
+
+    .skill-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .skill-card-icon { font-size: 1.1rem; }
+    .skill-card-title { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      padding: 0.17rem 0.52rem;
+      border-radius: 2px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted2);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(168,255,120,0.18);
+      transform: translateY(-3px);
+    }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-idx {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.9rem;
+    }
+    .project-name {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .project-blurb {
+      font-size: 0.82rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 0.98rem;
+      color: var(--muted2);
+      font-weight: 300;
+      margin-bottom: 1.8rem;
+      line-height: 1.8;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding: 0.7rem 1.2rem;
+      border: 1px solid rgba(168,255,120,0.25);
+      border-radius: 3px;
+      transition: background 0.2s, gap 0.2s;
+    }
+    .contact-email:hover {
+      background: var(--accent-dim);
+      gap: 0.8rem;
+    }
+
+    .socials {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-top: 2.2rem;
+    }
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+      color: var(--muted2);
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .social-row:hover { color: var(--text); }
+    .social-row svg { flex-shrink: 0; opacity: 0.5; }
+    .social-row:hover svg { opacity: 1; }
+    .social-arrow { margin-left: auto; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); transition: color 0.2s; }
+    .social-row:hover .social-arrow { color: var(--accent); }
+
+    .contact-right {}
+    .certifications {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.8rem;
+    }
+    .cert-head {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .cert-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .cert-item {
+      font-size: 0.83rem;
+      color: var(--muted2);
+      font-weight: 300;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .cert-item::before { content: '·'; color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .foot-copy {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.8rem; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        z-index: 199;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; letter-spacing: 0.06em; }
+      .hamburger { display: flex; }
+
+      #home { padding: 8rem 1.8rem 4rem; }
+      .hero-scroll { left: 1.8rem; }
+
+      .wrapper { padding: 0 1.8rem; }
+      .section { padding: 4.5rem 0; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .exp-period { padding-top: 0; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 1.8rem; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      #home { padding: 7rem 1.2rem 3.5rem; }
+      .wrapper { padding: 0 1.2rem; }
+      .section { padding: 3.5rem 0; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      nav { padding: 1rem 1.2rem; }
+      footer { padding: 1.5rem 1.2rem; }
+      h1.hero-name { letter-spacing: -0.02em; }
+    }
+  </style>
 </head>
 <body>
-    <nav class="nav">
-        <div class="max-w">
-        <ul class="menu">
 
-            <li> <a class="li" href="#home">Home</a></li>
-            <li> <a class="li" href="#about">About</a></li>
-            <li> <a class="li" href="#services">Services</a></li>
-            <li> <a class="li" href="#skills">Skills</a></li>
-            <li> <a class="li" href="#contact">Contact</a></li>
-            
-            
-        </ul>
-        
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#home">HS<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-inner">
+
+      <h1 class="hero-name">Harsh<br><em>Sukhadia</em></h1>
+      <p class="hero-desc">
+        <strong>Software Engineer &amp; ML practitioner.</strong> Currently building document intelligence systems at Perfecti and finishing my M.Sc. in Computational Science at Laurentian University.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn btn-filled">See my work</a>
+        <a href="#contact" class="btn btn-outline">Say hello</a>
+      </div>
     </div>
-    </nav>
-    
-    
-   
-    <section class="home" id="home">
-        
-        <div class="max-w">
-            <div class="home-c">
-                <div class="text1">Hello,My name is</div>
-                <div class="text2">Harsh</div>
-                <div class="text3">I'm a <span class="typing"></span></div>
-                
-            </div>
-        </div>
-    </section>
-
-
-    <section class="aboutme" id="about">
-        <div class="max-w">
-            <h2 class="t">About Me</h2>
-            <div class="about-c">
-               <div class="cl">
-                   <img src="p.JPG">
-
-                </div>        
-            
-            <div class="rl">
-            <div class="text">I'm Harsh and I'm <span class="typing-2">  </span></div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Nostrum recusandae, debitis iure illo nisi tempore dicta ratione aspernatur harum eum doloribus magni veniam fugit similique facere ducimus et placeat adipisci aut perspiciatis quidem voluptates deserunt maxime. Ipsam voluptatibus tempore molestiae perspiciatis. Consequatur architecto facere nemo iste repudiandae saepe, molestiae ad ipsum quos ex in facilis eaque esse. Pariatur
-                , repudiandae nisi.</p>
-            <button class="btn" href="#">Download CV</a>
-        
-            </div>
-            </div>
-        </div>
-    </section>
- 
-
-    <section class="services" id="services">
-        <div class="max-w">
-        <h2 class="t">My Services</h2>
-        <div class="ser-c">
-            <div class="card">
-                <div class="box">
-                    <i class="fa fa-paint-brush" aria-hidden="true"></i>
-                    <div class="text">Web Design</div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                         elit. Molestiae sint placeat numquam non 
-                         voluptate aut ulla
-                    </p>
-
-                </div>
-            
-            </div>
-
-          
-            <div class="card">
-                <div class="box">
-                    <i class="fa fa-line-chart" aria-hidden="true"></i>
-                    <div class="text">Freelancing</div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                         elit. Molestiae sint placeat numquam non 
-                         voluptate aut ulla
-                    </p>
-
-                </div>
-
-            </div>
-            <div class="card">
-                <div class="box">
-                    <i class="fa fa-code" aria-hidden="true"></i>
-                    <div class="text">App Devlopment</div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                         elit. Molestiae sint placeat numquam non 
-                         voluptate aut ulla
-                    </p>
-
-                </div>
-
-            </div>
-        
-    
-        </div>   
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>scroll</span>
     </div>
-</section>
+  </section>
 
+  <div class="divider"></div>
 
-<section class="skills" id="skills">
-    <div class="max-w">
-    <h2 class="t">My Skills</h2>
-    <div class="sk-c">
-        <div class="cl">
-            <div class="text">My Creative Skills and Experiences</div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing
-                         elit. Molestiae sint placeat numquam non 
-                         voluptate aut ulla Lorem ipsum dolor sit amet consectetur a
-                         dipisicing elit. Minima nulla fuga n
-                         m possimus Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, sed. odio illum blanditiis qui!
-                    </p>
-                   <a href="#">Read More</a>
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="wrapper">
+      <div class="sec-label">01 — About</div>
+      <h2 class="sec-title">A bit about me</h2>
+      <div class="about-grid">
+        <div class="about-body reveal">
+          <p>
+            I'm a Computer Engineering graduate from India, now doing my <strong>M.Sc. in Computational Science at Laurentian University</strong> in Sudbury. My coursework has ranged from machine learning and neural networks to image processing, cybersecurity, and applied cryptography — which is a weird and fun combination.
+          </p>
+          <p>
+            At <strong>Perfecti.io</strong> I'm building a Python pipeline from scratch that takes big messy mortgage PDF packages and figures out what's inside them — splitting pages, classifying government IDs, detecting barcodes, the whole thing. Before that I spent time at a clean tech startup working on AI chatbots, did a WordPress contract build for an ISO consultancy, and spent a couple of years writing production PHP/Laravel at a software shop in India.
+          </p>
+          <p>
+            I also spent about eight months mentoring students in AI and ML through Intel's AI for Youth program — got to attend national events in Delhi and Bangalore, which was a highlight.
+          </p>
         </div>
-    <div class="rl">
-            <div class="bars">
-                <div class="info">
-                    <span>HTML</span>
-                    <span>90%</span>
-                </div>
-                <div class="line h"></div>
-
-            </div>
-            
-
-            <div class="bars">
-                <div class="info">
-                    <span>CSS</span>
-                    <span>60%</span>
-                </div>
-                <div class="line c"></div>
-            </div>
-
-
-            <div class="bars">
-                <div class="info">
-                    <span>My SQL</span>
-                    <span>70%</span>
-                </div>
-                <div class="line s"></div>
-                </div>
-
-                <div class="bars">
-                    <div class="info">
-                        <span>Java</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="line j"></div>
-                </div>
-
-                    <div class="bars">
-                        <div class="info">
-                            <span>Pyhton</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="line p"></div>
-                        </div>
-
-                        <div class="bars">
-                            <div class="info">
-                                <span>Android Studio</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="line a"></div>
-                        </div>
-                
-        
-
-
-            </div>
-            
+        <div class="about-sidebar reveal reveal-d1">
+          <div class="info-block">
+            <div class="info-block-label">Currently</div>
+            <div class="info-block-value">SWE Intern @ Perfecti.io · Surrey, BC</div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Education</div>
+            <div class="info-block-value">M.Sc. Computational Science<br><span style="color:var(--muted2); font-size:0.85rem;">Laurentian University, 2024 – 2026</span></div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Undergrad</div>
+            <div class="info-block-value">B.E. Computer Engineering<br><span style="color:var(--muted2); font-size:0.85rem;">SVIT, Gujarat · 2019 – 2023</span></div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-label">Email</div>
+            <div class="info-block-value" style="font-family:var(--mono); font-size:0.82rem;">harshhitesh364@gmail.com</div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</section>
+  </section>
 
+  <div class="divider"></div>
 
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="wrapper">
+      <div class="sec-label">02 — Experience</div>
+      <h2 class="sec-title">Where I've worked</h2>
+      <div class="exp-list">
 
-<section class="con-me" id="contact">
-    <div class="max-w">
-    <h2 class="t">Contact Me </h2>
-
-    <div class="con-c">
-        <div class="cl">
-        <div class="text" >
-            Get In Touch
+        <div class="exp-item reveal">
+          <div class="exp-period">Apr 2026<br>Present</div>
+          <div class="exp-right">
+            <div class="exp-role">Software Engineer Intern</div>
+            <div class="exp-company">Perfecti.io · Surrey, British Columbia</div>
+            <ul class="exp-bullets">
+              <li>Built an automated mortgage document processing pipeline from scratch in Python — splits merged PDFs, extracts government-issued IDs using Tesseract OCR, pyzbar, and OpenCV</li>
+              <li>Designed a 20-signal document boundary detection system using heuristic approaches</li>
+              <li>Prototyped visual document similarity with MobileNetV3, CLIP, Gabor filters, and HSV histograms to evaluate OCR-free classification for health cards</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">Tesseract</span><span class="tag">OpenCV</span>
+              <span class="tag">PyMuPDF</span><span class="tag">CLIP</span><span class="tag">pyzbar</span>
+            </div>
+          </div>
         </div>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Molestiae sint placeat numquam non 
-            voluptate aut ulla Lorem ipsum dolor sit amet consectetur a
-            dipisicing elit. Minima nulla fuga n
-            m possimus Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, sed. odio illum blanditiis qui!
-       </p>
-       <div class="icon">
-           <div class="row">
-           
-            
-            <i class="fa fa-user"></i>
-                     <div class="info">
-                <div class="head">Name</div>
-                <div class="sbt"><b>Harsh Sukhadia</b> </div>
+        <div class="exp-item reveal">
+          <div class="exp-period">Mar 2026<br>May 2026</div>
+          <div class="exp-right">
+            <div class="exp-role">Web Developer (Contract)</div>
+            <div class="exp-company">ISO Certification Consultants Inc. · Niagara, Ontario</div>
+            <ul class="exp-bullets">
+              <li>Designed and deployed a fully responsive WordPress site with custom plugins and on-page SEO (meta tags, schema markup, image compression)</li>
+              <li>Handled the local-to-production migration end-to-end with minimal downtime</li>
+            </ul>
+            <div class="tags">
+              <span class="tag tag-blue">WordPress</span><span class="tag tag-blue">SEO</span><span class="tag tag-blue">PHP</span>
             </div>
-       </div>
-      <div class="row">
-           
-            
-        <i style="font-size:24px" class="fa fa-map-maker alt">&#xf2bb;</i>
-                     <div class="info">
-                <div class="head">Address</div>
-                <div class="sbt"><b>Gujarat,India</b></div>
-            </div>
-       </div>
+          </div>
+        </div>
 
-      <div class="row">
-           
-            
-        <i style="font-size:24px" class="fa">&#xf0e0;</i>
-
-                     <div class="info">
-                <div class="head">E-mail</div>
-                <div class="sbt"><b>harshhcomp@gmail.com</b></div>
+        <div class="exp-item reveal">
+          <div class="exp-period">Oct 2025<br>Dec 2025</div>
+          <div class="exp-right">
+            <div class="exp-role">Software Engineering Intern</div>
+            <div class="exp-company">Global Cleantech Directory · Richmond Hill, Ontario</div>
+            <ul class="exp-bullets">
+              <li>Evaluated LLM architectures for chatbot development and implemented a scalable deployment system</li>
+              <li>Integrated LLM components to improve chatbot accuracy, response quality, and UX</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">LLMs</span><span class="tag">AI Chatbot</span><span class="tag">Python</span>
             </div>
-       </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-period">Mar 2023<br>Aug 2024</div>
+          <div class="exp-right">
+            <div class="exp-role">Associate Software Engineer</div>
+            <div class="exp-company">Ethics Infotech LLP · Gujarat, India</div>
+            <ul class="exp-bullets">
+              <li>Delivered production-ready projects in PHP (Core MVC and Laravel) across multiple client engagements</li>
+              <li>Built and maintained backend REST APIs enabling data exchange with frontend teams</li>
+              <li>Developed WordPress sites and a React-based POS system for retail chains</li>
+            </ul>
+            <div class="tags">
+              <span class="tag tag-blue">PHP</span><span class="tag tag-blue">Laravel</span>
+              <span class="tag tag-blue">React</span><span class="tag tag-blue">MySQL</span><span class="tag tag-blue">WordPress</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-period">Jul 2022<br>Mar 2023</div>
+          <div class="exp-right">
+            <div class="exp-role">AI for Youth Mentor</div>
+            <div class="exp-company">Intel Corporation · Remote</div>
+            <ul class="exp-bullets">
+              <li>Mentored students in NLP, computer vision, and data visualisation through bootcamps in collaboration with Jayso Foundation</li>
+              <li>Invited to national events in Delhi and Bangalore, guiding teams building ML projects for real-world social problems</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">ML</span><span class="tag">NLP</span><span class="tag">Computer Vision</span><span class="tag">Mentorship</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item reveal">
+          <div class="exp-period">Jul 2022<br>Nov 2022</div>
+          <div class="exp-right">
+            <div class="exp-role">PHP Developer Intern</div>
+            <div class="exp-company">Ethics Infotech LLP · Gujarat, India</div>
+            <ul class="exp-bullets">
+              <li>Built a dynamic admin panel with PHP, Bootstrap 5, and JavaScript for managing website content</li>
+              <li>Developed a full CRUD application with file and image upload functionality</li>
+            </ul>
+            <div class="tags">
+              <span class="tag tag-blue">PHP</span><span class="tag tag-blue">Bootstrap</span><span class="tag tag-blue">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-        </div>       
-</div>
-</div>
-<p class="social">Connect me at:</p> 
-<div class="handles">
-    <a class="l" href="https://in.linkedin.com" class="l">Linkedin&nbsp;<i class="fa fa-linkedin ,.l"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://www.facebook.com/harsh.sukhadia.52"  class="l">Facebook&nbsp;<i style="font-size:24px" class="fa">&#xf230;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://www.instagram.com/harsh.sukhadia12/?hl=en"  class="l">Instagram&nbsp;<i style="font-size:24px" class="fa">&#xf16d;</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </section>
 
-</div>
-</div>
+  <div class="divider"></div>
 
-</section>
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="wrapper">
+      <div class="sec-label">03 — Skills</div>
+      <h2 class="sec-title">What I work with</h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">🤖</span>
+            <span class="skill-card-title">ML / AI</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">Python</span><span class="pill">PyTorch</span>
+            <span class="pill">OpenCV</span><span class="pill">CLIP</span>
+            <span class="pill">MobileNetV3</span><span class="pill">Scikit-learn</span>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-d1">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">📄</span>
+            <span class="skill-card-title">Document Processing</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">Tesseract OCR</span><span class="pill">PyMuPDF</span>
+            <span class="pill">pyzbar</span><span class="pill">pdfplumber</span>
+            <span class="pill">Gabor filters</span>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-d2">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">🗄️</span>
+            <span class="skill-card-title">Backend</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">PHP</span><span class="pill">Laravel</span>
+            <span class="pill">MySQL</span><span class="pill">REST APIs</span>
+            <span class="pill">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">🌐</span>
+            <span class="skill-card-title">Frontend</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">React</span><span class="pill">JavaScript</span>
+            <span class="pill">HTML/CSS</span><span class="pill">WordPress</span>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-d1">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">🔧</span>
+            <span class="skill-card-title">Tools</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">Git / GitLab</span><span class="pill">Linux</span>
+            <span class="pill">Google Colab</span><span class="pill">MATLAB</span>
+          </div>
+        </div>
+        <div class="skill-card reveal reveal-d2">
+          <div class="skill-card-head">
+            <span class="skill-card-icon">🧮</span>
+            <span class="skill-card-title">Languages</span>
+          </div>
+          <div class="skill-pills">
+            <span class="pill">Python</span><span class="pill">PHP</span>
+            <span class="pill">Java</span><span class="pill">JavaScript</span>
+            <span class="pill">C / C++</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer class="foot">
-    <a href="#">Policy</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="#">&copy; Copyrights Reserved | Harsh  2021</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="divider"></div>
 
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="wrapper">
+      <div class="sec-label">04 — Projects</div>
+      <h2 class="sec-title">Things I've built</h2>
+      <div class="projects-grid">
 
-</section>
+        <div class="project-card reveal">
+          <div class="project-idx">01</div>
+          <div class="project-name">Mortgage Document Pipeline</div>
+          <p class="project-blurb">Automated PDF splitting and ID classification system built at Perfecti — OCR, barcode decoding, and computer vision working together.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">OCR</span><span class="tag">OpenCV</span>
+          </div>
+        </div>
 
-<script src="script.js"></script>
+        <div class="project-card reveal reveal-d1">
+          <div class="project-idx">02</div>
+          <div class="project-name">Visual PDF Boundary Detection</div>
+          <p class="project-blurb">Experimented with MobileNetV3, CLIP embeddings, and HSV histograms to split scanned document pages without relying on text.</p>
+          <div class="tags">
+            <span class="tag">CLIP</span><span class="tag">PyTorch</span><span class="tag">Colab</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-d2">
+          <div class="project-idx">03</div>
+          <div class="project-name">Vehicle Speed Monitoring</div>
+          <p class="project-blurb">Real-time computer vision pipeline using OpenCV and YOLO to detect, track, and estimate vehicle speeds from video frames.</p>
+          <div class="tags">
+            <span class="tag">YOLO</span><span class="tag">OpenCV</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-idx">04</div>
+          <div class="project-name">Heart Disease Prediction</div>
+          <p class="project-blurb">Keras neural network trained on Kaggle data for binary heart disease classification, with feature engineering and visualisation.</p>
+          <div class="tags">
+            <span class="tag">Keras</span><span class="tag">Pandas</span><span class="tag">Seaborn</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-d1">
+          <div class="project-idx">05</div>
+          <div class="project-name">Dynamic QR Code Generator</div>
+          <p class="project-blurb">PHP + Composer backend with a JavaScript/HTML/CSS frontend for generating QR codes on the fly in the browser.</p>
+          <div class="tags">
+            <span class="tag tag-blue">PHP</span><span class="tag tag-blue">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-d2">
+          <div class="project-idx">06</div>
+          <div class="project-name">PHP/Laravel Applications</div>
+          <p class="project-blurb">Production client projects — REST APIs, admin dashboards, a React-based POS system, and a full CRUD app with file uploads.</p>
+          <div class="tags">
+            <span class="tag tag-blue">Laravel</span><span class="tag tag-blue">React</span><span class="tag tag-blue">MySQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="wrapper">
+      <div class="sec-label">05 — Contact</div>
+      <h2 class="sec-title">Let's talk</h2>
+      <div class="contact-wrap">
+        <div class="contact-left reveal">
+          <p>
+            I'm looking for software engineering and ML roles — full-time, internship, or contract. If you're working on something interesting or just want to chat about document AI, Python, or anything in between, feel free to reach out.
+          </p>
+          <a class="contact-email" href="mailto:harshhitesh364@gmail.com">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 4 10 9 10-9"/></svg>
+            harshhitesh364@gmail.com →
+          </a>
+          <div class="socials">
+            <a class="social-row" href="https://linkedin.com/in/harsh-sukhadia" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn — Harsh Sukhadia
+              <span class="social-arrow">↗</span>
+            </a>
+            <a class="social-row" href="https://github.com/Harshsukhadia" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+              GitHub — Harshsukhadia
+              <span class="social-arrow">↗</span>
+            </a>
+            <a class="social-row" href="https://www.instagram.com/harsh.sukhadia12/" target="_blank">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+              Instagram — harsh.sukhadia12
+              <span class="social-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+        <div class="contact-right reveal reveal-d1">
+          <div class="certifications">
+            <div class="cert-head">Certifications</div>
+            <div class="cert-list">
+              <div class="cert-item">AI Mentor — Intel</div>
+              <div class="cert-item">OpenCV Bootcamp</div>
+              <div class="cert-item">MATLAB Onramp</div>
+              <div class="cert-item">Intro to Data Science — Cisco</div>
+              <div class="cert-item">Data Science Essentials with Python — Cisco</div>
+              <div class="cert-item">ML in Cybersecurity</div>
+              <div class="cert-item">Intro to DSA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="foot-copy">© <span id="yr"></span> Harsh Sukhadia</span>
+  </footer>
+
+  <script>
+    // Auto-update copyright year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Hamburger toggle
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // Nav compact on scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.padding = window.innerWidth > 960 ? '0.85rem 5rem' : '0.7rem 1.8rem';
+      } else {
+        nav.style.padding = window.innerWidth > 960 ? '1.25rem 5rem' : '1rem 1.8rem';
+      }
+    }, { passive: true });
+  </script>
 </body>
 </html>
